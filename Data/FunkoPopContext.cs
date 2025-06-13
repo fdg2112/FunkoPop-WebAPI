@@ -9,8 +9,25 @@ namespace Data
     public partial class FunkoPopContext : DbContext
     {
         public FunkoPopContext()
-            : base("name=FunkoPopContext")
+            : base(GetConnectionString())
         {
+        }
+
+        private static string GetConnectionString()
+        {
+            var env = Environment.GetEnvironmentVariable("FUNKOPOP_CONNECTION_STRING");
+            if (!string.IsNullOrWhiteSpace(env))
+            {
+                return env;
+            }
+
+            var config = System.Configuration.ConfigurationManager.ConnectionStrings["FunkoPopContext"];
+            if (config != null && !string.IsNullOrWhiteSpace(config.ConnectionString))
+            {
+                return config.ConnectionString;
+            }
+
+            return "Data Source=(local);Initial Catalog=funkopop;Integrated Security=True";
         }
 
         public virtual DbSet<Address> Address { get; set; }
