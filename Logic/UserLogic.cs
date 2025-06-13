@@ -12,16 +12,22 @@ using System.Linq;
 using Google.Apis.Util.Store;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Configuration;
 
 namespace Logic
 {
     public class UserLogic : BaseLogic, ICRUD<User, int>
     {
-        public UserLogic() { }
+        private readonly string clientId;
+        private readonly string clientSecret;
+        private readonly string redirectUri;
 
-        private readonly string clientId = "786922175766-loef3sj7qqqo008nmrb8btqbhgijnghm.apps.googleusercontent.com";
-        private readonly string clientSecret = "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";
-        private readonly string redirectUri = "TU_REDIRECT_URI";
+        public UserLogic()
+        {
+            clientId = ConfigurationManager.AppSettings["GoogleClientId"];
+            clientSecret = ConfigurationManager.AppSettings["GoogleClientSecret"];
+            redirectUri = ConfigurationManager.AppSettings["GoogleRedirectUri"];
+        }
 
         public async Task<User> AuthenticateWithGoogle(string code)
         {
