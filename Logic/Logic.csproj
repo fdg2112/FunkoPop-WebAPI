@@ -73,11 +73,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdressLogic.cs" />
+    <Compile Include="AddressLogic.cs" />
     <Compile Include="BaseLogic.cs" />
     <Compile Include="CartLogic.cs" />
     <Compile Include="CollectionLogic.cs" />
-    <Compile Include="ConsultationProductoLogic.cs" />
+    <Compile Include="ConsultationProductLogic.cs" />
     <Compile Include="FavoriteLogic.cs" />
     <Compile Include="Filters\FiltersParams.cs" />
     <Compile Include="Filters\OrderByParams.cs" />
